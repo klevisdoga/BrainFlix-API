@@ -7,7 +7,16 @@ const videosFile = fs.readFileSync('./data/videos.json');
 router.route('/')
     .get((req, res) => {
         const videos = JSON.parse(videosFile)
-        res.json(videos)
+
+        let filteredVids = []
+
+        videos.forEach((item) => {
+            filteredVids.push({id: item.id, title: item.title, channel: item.channel, image: item.image})
+        })
+
+        console.log(filteredVids)
+
+        res.json(filteredVids)
     })
     // .post((req, res) => {
 
